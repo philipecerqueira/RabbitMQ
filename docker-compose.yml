@@ -1,0 +1,30 @@
+networks:
+  rabbitnet:
+    name: rabbitnet
+    driver: bridge
+
+volumes:
+  rabbitmq_data:
+    name: rabbitmq_data
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    restart: unless-stopped
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASS}
+      RABBITMQ_DEFAULT_VHOST: ${RABBITMQ_VHOST}
+      RABBITMQ_LOG: debug,+color
+      RABBITMQ_NODENAME: ${RABBITMQ_APP}
+      RABBITMQ_MGMT_HTTP_REQUEST_HANDLERS: "management_ac_http_handler"
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+      - ./rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+      - ./rabbitmq/enabled_plugins:/etc/rabbitmq/enabled_plugins
+    ports:
+      - "${RABBITMQ_MANAGEMENT_PORT}:15672"
+      - "${RABBITMQ_PORT}:5672"
+    networks:
+      - rabbitnet
