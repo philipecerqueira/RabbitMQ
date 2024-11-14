@@ -22,7 +22,6 @@ Este projeto fornece um ambiente básico para executar o RabbitMQ em contêiner 
 
    ```
    docker-compose up -d --build
-
    ```
 
 ## Acesso ao Painel de Gerenciamento
