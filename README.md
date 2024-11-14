@@ -20,9 +20,9 @@ Este projeto fornece um ambiente básico para executar o RabbitMQ em contêiner 
 
    - Execute o comando abaixo para iniciar o RabbitMQ em segundo plano:
 
-   ```
-   docker-compose up -d --build
-   ```
+        ```
+        docker-compose up -d --build
+        ```
 
 ## Acesso ao Painel de Gerenciamento
 
